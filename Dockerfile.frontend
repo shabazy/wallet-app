@@ -1,0 +1,5 @@
+FROM node:16-slim
+ADD ./example-frontend /frontend
+WORKDIR /frontend
+RUN npm install
+CMD npm start

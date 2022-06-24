@@ -1,0 +1,10 @@
+FROM openjdk:11
+LABEL maintainer="Gokhan ENSEP <gokhanensep@gmail.com>"
+EXPOSE 80
+RUN apt-get update
+RUN apt-get install -y maven
+WORKDIR /example-api
+ADD ./example-api .
+RUN mvn clean package -DskipTests=true
+RUN cp target/*.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
